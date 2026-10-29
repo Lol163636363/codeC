@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#173e35">
+  <meta name="description" content="Explore le cours de langage C de Fred Faber. Recherche, exemples, exercices et assistant IA local.">
+  <title>C Studio — Le cours, à portée de recherche</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+<div class="shell" id="shell">
+  <aside class="sidebar" id="sidebar" aria-label="Navigation du cours">
+    <a class="brand" href="#/"><span class="brand-symbol">&lt;/&gt;</span><span>C Studio<small>LE COURS DE FRED FABER</small></span></a>
+    <div class="workspace-label"><span class="workspace-dot"></span>Mon espace C <span class="local-badge">LOCAL</span></div>
+    <nav class="primary-nav" aria-label="Espace de travail">
+      <a href="#/" data-nav="home"><span data-icon="home"></span>Vue d’ensemble</a>
+      <a href="#/search" data-nav="search"><span data-icon="search"></span>Explorer le cours<span class="keycap">⌘ K</span></a>
+      <a href="#/bookmarks" data-nav="bookmarks"><span data-icon="bookmark"></span>Mes favoris<span id="favorite-count" class="count">0</span></a>
+    </nav>
+    <div class="nav-heading">LE PROGRAMME <span>11 chapitres</span></div>
+    <nav class="chapter-nav" id="chapter-nav" aria-label="Chapitres"><div class="skeleton">Chargement du cours…</div></nav>
+    <div class="sidebar-bottom"><span data-icon="book"></span><div>Un cours de Fred Faber<small>Introduction à l’ANSI-C</small></div><a href="#/page/prg-c04.htm" aria-label="À propos du cours"><span data-icon="info"></span></a></div>
+  </aside>
+  <div class="main-shell">
+    <header class="topbar">
+      <div class="topbar-left"><button class="icon-button mobile-menu" id="menu-button" aria-label="Ouvrir le menu" aria-expanded="false"><span data-icon="menu"></span></button><span class="breadcrumb-icon" data-icon="code"></span><span id="breadcrumb">Mon espace <span>/</span> Vue d’ensemble</span></div>
+      <div class="topbar-right"><span class="offline-label"><span></span>Ton cours, en local</span><button class="assistant-toggle" id="assistant-toggle" aria-controls="assistant-panel" aria-expanded="true"><span data-icon="sparkles"></span>Assistant IA</button><div class="avatar" title="Ton espace personnel">LC</div></div>
+    </header>
+    <div class="content-grid">
+      <main id="main" tabindex="-1"><div class="initial-loading"><span class="spinner"></span>Préparation de ton espace…</div></main>
+      <aside class="assistant-panel" id="assistant-panel" aria-label="Assistant IA du cours">
+        <div class="assistant-heading"><div class="ai-symbol" data-icon="sparkles"></div><div><h2>Un coup de pouce ?</h2><p>Ton assistant pour comprendre le C</p></div><button class="icon-button" id="close-assistant" aria-label="Fermer l’assistant"><span data-icon="close"></span></button></div>
+        <div class="ai-status-row"><span id="ai-status"><span class="status-dot checking"></span>Vérification de l’IA…</span><button class="icon-button" id="settings-button" aria-label="Configurer l’IA"><span data-icon="settings"></span></button></div>
+        <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-relevant="additions">
+          <div class="assistant-welcome" id="assistant-welcome"><div class="welcome-spark" data-icon="sparkles"></div><h3>On débloque ça ensemble.</h3><p>Une notion floue, un exemple à comprendre ? Pose ta question : je m’appuie sur ton cours.</p><div class="prompt-list"><button data-prompt="Explique-moi les pointeurs avec un exemple simple."><span data-icon="arrow-up-right"></span>Comprendre les pointeurs</button><button data-prompt="Quelle est la différence entre les boucles for et while ?"><span data-icon="arrow-up-right"></span>Comparer for et while</button><button data-prompt="Comment utiliser printf et scanf ?"><span data-icon="arrow-up-right"></span>Utiliser printf et scanf</button></div><p class="sources-note"><span data-icon="book-open"></span>Les passages utilisés restent accessibles.</p></div>
+        </div>
+        <div class="chat-bottom"><div class="reading-context" id="reading-context" hidden><span data-icon="book-open"></span><span></span><button id="clear-context" aria-label="Retirer la page du contexte">×</button></div><form id="chat-form"><label class="sr-only" for="chat-input">Ta question sur le cours</label><textarea id="chat-input" rows="2" maxlength="3000" placeholder="Pose ta question sur le cours…"></textarea><div class="composer-bottom"><span><span class="tiny-dot"></span>Basé sur ton cours</span><button class="send-button" type="submit" id="send-button" aria-label="Envoyer la question"><span data-icon="arrow-up"></span></button></div></form><p>IA locale · Vérifie les réponses dans les sources.</p></div>
+      </aside>
+    </div>
+  </div>
+</div>
+<dialog id="settings-dialog"><form method="dialog"><button class="icon-button dialog-close" aria-label="Fermer"><span data-icon="close"></span></button></form><div class="ai-symbol" data-icon="sparkles"></div><h2>Ton IA, sur ton ordinateur.</h2><p>L’assistant utilise Ollama. Les passages du cours et tes questions sont traités par le modèle local.</p><div class="setup-step"><span>1</span><div><strong>Lancer Ollama</strong><p>S’il n’est pas déjà lancé en arrière-plan :</p><button class="command-copy" data-copy="ollama serve"><code>ollama serve</code><span data-icon="copy"></span></button></div></div><div class="setup-step"><span>2</span><div><strong>Ajouter un modèle</strong><p>Une seule fois, dans un autre terminal. Le téléchargement nécessite Internet.</p><button class="command-copy" data-copy="ollama pull qwen2.5:3b"><code>ollama pull qwen2.5:3b</code><span data-icon="copy"></span></button></div></div><label for="model-select">Modèle installé</label><select id="model-select"><option value="">Aucun modèle détecté</option></select><p class="settings-note">La vitesse dépend du modèle et de ton ordinateur. La recherche et la lecture fonctionnent même sans IA.</p><button class="button green full-width" id="refresh-ai"><span data-icon="refresh"></span>Vérifier la connexion</button><p id="settings-feedback" role="status"></p></dialog>
+<div id="toast" role="status"></div>
+</body>
+</html>
